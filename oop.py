@@ -13,8 +13,11 @@ class Employee:
 	def fullname(self):
 		return f'{self.first} {self.last}'
 
-emp_1 = Employee('Joy', 'Deep', '50000')
-emp_2 = Employee('Jony', 'Deap', '60000')
+	def apply_raise(self):
+		self.pay = int(self.pay * 1.04)
+
+emp_1 = Employee('Joy', 'Deep', 50000)
+emp_2 = Employee('Jony', 'Deap', 60000)
 
 # print(emp_1)
 # print(emp_2)
@@ -37,6 +40,10 @@ print(emp_2.fullname())
 # how a method inside a class works
 emp_1.fullname()
 print(Employee.fullname(emp_1))
+
+print(emp_1.pay)
+emp_1.apply_raise()
+print(emp_1.pay)
 
 
 
