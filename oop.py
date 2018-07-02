@@ -9,6 +9,7 @@ class Employee:
 		self.pay = pay
 		self.email = first + "." + last + "@company.com"
 
+	"""For printing full name of employee"""
 	def fullname(self):
 		return f'{self.first} {self.last}'
 
@@ -28,13 +29,14 @@ emp_2 = Employee('Jony', 'Deap', '60000')
 # emp_2.email = 'jony.deap@company.com'
 # emp_2.pay = 60000
 
-# print(emp_1.email)
-# print(emp_2.email)
-# print(emp_1.fullname())
-# print(emp_2.fullname())
+print(emp_1.email)
+print(emp_2.email)
+print(emp_1.fullname())
+print(emp_2.fullname())
 
-# emp_1.fullname()
-# print(Employee.fullname(emp_1))
+# how a method inside a class works
+emp_1.fullname()
+print(Employee.fullname(emp_1))
 
 
 
