@@ -152,6 +152,7 @@ class Employee:
 	def apply_raise(self):
 		self.pay = int(self.pay * self.raise_amount)
 
+"""Developer subclass created. Subclass of Employee class"""
 
 class Developer(Employee):
 	raise_amount = 1.10
@@ -160,20 +161,61 @@ class Developer(Employee):
 		super().__init__(first, last, pay)
 		self.prog_lang = prog_lang
 
+"""Manager subclass created. Subclass of Employee class"""
+
+class Manager(Employee):
+	def __init__(self, first, last, pay, employees = None):     #employees is taking a list
+		super().__init__(first, last, pay)
+		if employees == None:
+			self.employees = []
+		else:
+			self.employees = employees
+
+	"""Adding employees to manager"""
+
+	def add_emp(self, emp):
+		if emp not in self.employees:
+			self.employees.append(emp)
+
+	"""Remove employees to manager"""
+
+	def remove_emp(self, emp):
+		if emp in self.employees:
+			self.employees.remove(emp)
+
+	def print_emps(self):
+		for emp in self.employees:
+			print('-->', emp.fullname())
 
 
-
+"""Developer instance created"""
 dev_1 = Developer('Corey', 'Schafer', 50000, 'Python')
 dev_2 = Developer('Test', 'Test', 60000, 'Java')
 
-# print(help(Developer))
+"""Manager instance created"""
 
-print(dev_1.prog_lang)
+mgr_1 = Manager('Sue', 'Smith', 90000, [dev_1])
+
+print(help(Developer))
+
+print(mgr_1.email)
 print(dev_2.prog_lang)
+
+mgr_1.add_emp(dev_2)
+mgr_1.remove_emp(dev_1)
+
+mgr_1.print_emps()
 
 print(dev_1.pay)
 dev_1.apply_raise()
 print(dev_1.pay)
+""" To check whether an instance is a part of a class or not."""
+print(isinstance(mgr_1, Developer))
+""" To check if developer is a subclass of employee or not."""
+print(issubclass(Developer, Employee))
+
+
+
 
 
 
