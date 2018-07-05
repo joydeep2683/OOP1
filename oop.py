@@ -133,7 +133,94 @@
 
 
 
+# class Employee:
+
+# 	num_of_emps = 0
+# 	raise_amount = 1.04
+# 	def __init__(self, first, last, pay):
+# 		self.first = first
+# 		self.last = last
+# 		self.pay = pay
+# 		self.email = first + "." + last + "@company.com"
+
+# 		Employee.num_of_emps += 1
+
+# 	"""For printing full name of employee"""
+# 	def fullname(self):
+# 		return f'{self.first} {self.last}'
+
+# 	def apply_raise(self):
+# 		self.pay = int(self.pay * self.raise_amount)
+
+# """Developer subclass created. Subclass of Employee class"""
+
+# class Developer(Employee):
+# 	raise_amount = 1.10
+
+# 	def __init__(self, first, last, pay, prog_lang):
+# 		super().__init__(first, last, pay)
+# 		self.prog_lang = prog_lang
+
+# """Manager subclass created. Subclass of Employee class"""
+
+# class Manager(Employee):
+# 	def __init__(self, first, last, pay, employees = None):     #employees is taking a list
+# 		super().__init__(first, last, pay)
+# 		if employees == None:
+# 			self.employees = []
+# 		else:
+# 			self.employees = employees
+
+# 	"""Adding employees to manager"""
+
+# 	def add_emp(self, emp):
+# 		if emp not in self.employees:
+# 			self.employees.append(emp)
+
+# 	"""Remove employees to manager"""
+
+# 	def remove_emp(self, emp):
+# 		if emp in self.employees:
+# 			self.employees.remove(emp)
+
+# 	def print_emps(self):
+# 		for emp in self.employees:
+# 			print('-->', emp.fullname())
+
+
+# """Developer instance created"""
+# dev_1 = Developer('Corey', 'Schafer', 50000, 'Python')
+# dev_2 = Developer('Test', 'Test', 60000, 'Java')
+
+# """Manager instance created"""
+
+# mgr_1 = Manager('Sue', 'Smith', 90000, [dev_1])
+
+# print(help(Developer))
+
+# print(mgr_1.email)
+# print(dev_2.prog_lang)
+
+# mgr_1.add_emp(dev_2)
+# mgr_1.remove_emp(dev_1)
+
+# mgr_1.print_emps()
+
+# print(dev_1.pay)
+# dev_1.apply_raise()
+# print(dev_1.pay)
+# """ To check whether an instance is a part of a class or not."""
+# print(isinstance(mgr_1, Developer))
+# """ To check if developer is a subclass of employee or not."""
+# print(issubclass(Developer, Employee))
+
+
+#-------------------------------------------------------------
+
+
+
 class Employee:
+
 
 	num_of_emps = 0
 	raise_amount = 1.04
@@ -141,89 +228,42 @@ class Employee:
 		self.first = first
 		self.last = last
 		self.pay = pay
-		self.email = first + "." + last + "@company.com"
 
 		Employee.num_of_emps += 1
 
+	@property
+	def email(self):
+		return f'{self.first}.{self.last}@company.com'
+
 	"""For printing full name of employee"""
+	@property
 	def fullname(self):
 		return f'{self.first} {self.last}'
 
-	def apply_raise(self):
-		self.pay = int(self.pay * self.raise_amount)
+	@fullname.setter
+	def fullname(self, name):
+		first, last = name.split(' ')
+		self.first = first
+		self.last = last
 
-"""Developer subclass created. Subclass of Employee class"""
-
-class Developer(Employee):
-	raise_amount = 1.10
-
-	def __init__(self, first, last, pay, prog_lang):
-		super().__init__(first, last, pay)
-		self.prog_lang = prog_lang
-
-"""Manager subclass created. Subclass of Employee class"""
-
-class Manager(Employee):
-	def __init__(self, first, last, pay, employees = None):     #employees is taking a list
-		super().__init__(first, last, pay)
-		if employees == None:
-			self.employees = []
-		else:
-			self.employees = employees
-
-	"""Adding employees to manager"""
-
-	def add_emp(self, emp):
-		if emp not in self.employees:
-			self.employees.append(emp)
-
-	"""Remove employees to manager"""
-
-	def remove_emp(self, emp):
-		if emp in self.employees:
-			self.employees.remove(emp)
-
-	def print_emps(self):
-		for emp in self.employees:
-			print('-->', emp.fullname())
-
-
-"""Developer instance created"""
-dev_1 = Developer('Corey', 'Schafer', 50000, 'Python')
-dev_2 = Developer('Test', 'Test', 60000, 'Java')
-
-"""Manager instance created"""
-
-mgr_1 = Manager('Sue', 'Smith', 90000, [dev_1])
-
-print(help(Developer))
-
-print(mgr_1.email)
-print(dev_2.prog_lang)
-
-mgr_1.add_emp(dev_2)
-mgr_1.remove_emp(dev_1)
-
-mgr_1.print_emps()
-
-print(dev_1.pay)
-dev_1.apply_raise()
-print(dev_1.pay)
-""" To check whether an instance is a part of a class or not."""
-print(isinstance(mgr_1, Developer))
-""" To check if developer is a subclass of employee or not."""
-print(issubclass(Developer, Employee))
+	@fullname.deleter
+	def fullname(self):
+		print('Delete Name!')
+		self.first = None
+		self.last = None
 
 
 
+emp_1 = Employee('Joy', 'Deep', 50000)
+emp_2 = Employee('Jony', 'Deap', 60000)
 
+emp_1.fullname = 'Jim Corbet'
 
-
-
-
-
-
-
+print(emp_1.first)
+print(emp_1.email)
+print(emp_1.fullname)
+del emp_1.fullname
+print(emp_1.fullname)
 
 
 
